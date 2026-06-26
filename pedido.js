@@ -8,17 +8,18 @@ boton.addEventListener("click", publicarPedido);
 
 function publicarPedido() {
 
-    const campos = document.querySelectorAll("input[type=text], textarea");
+    const campos = document.querySelectorAll(
+        "input[type=text], textarea"
+    );
 
     const pedido = campos[0].value.trim();
     const descripcion = campos[1].value.trim();
-    const origen = campos[2].value.trim();
+    const origen = campos[2].value.trim(); // OPCIONAL
     const destino = campos[3].value.trim();
 
     if (pedido === "") {
 
         alert("Escribe qué necesitas.");
-
         return;
 
     }
@@ -26,15 +27,6 @@ function publicarPedido() {
     if (descripcion === "") {
 
         alert("Agrega una descripción.");
-
-        return;
-
-    }
-
-    if (origen === "") {
-
-        alert("Indica dónde recoger o comprar.");
-
         return;
 
     }
@@ -42,7 +34,6 @@ function publicarPedido() {
     if (destino === "") {
 
         alert("Indica la dirección de entrega.");
-
         return;
 
     }
@@ -53,7 +44,10 @@ function publicarPedido() {
 
     localStorage.setItem("pedido", pedido);
     localStorage.setItem("descripcion", descripcion);
-    localStorage.setItem("origen", origen);
+
+    // OPCIONAL
+    localStorage.setItem("origen", origen || "");
+
     localStorage.setItem("destino", destino);
 
     setTimeout(() => {
