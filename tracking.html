@@ -14,15 +14,15 @@
 
 <link rel="stylesheet" href="tracking.css">
 
-<!-- Leaflet (mapa gratis sin API key) -->
+<!-- Leaflet mapa -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 </head>
 
 <body>
 
 <header>
-<h2>📦 Seguimiento del pedido</h2>
-<p id="estado">Preparando ruta...</p>
+    <h2>📦 Seguimiento del pedido</h2>
+    <p id="estado">Preparando ruta...</p>
 </header>
 
 <div id="map"></div>
@@ -35,13 +35,25 @@
     </div>
 
     <div class="card">
-        <h3>Estado</h3>
+        <h3>Estado del pedido</h3>
         <p id="estadoPedido">Buscando repartidor...</p>
     </div>
 
     <div class="acciones">
         <button onclick="llamar()">📞 Llamar</button>
-        <button onclick="chat()">💬 Chat</button>
+        <button onclick="chat()">💬 Chat info</button>
+    </div>
+
+</div>
+
+<!-- 💬 CHAT -->
+<div class="chat">
+
+    <div id="mensajes" class="mensajes"></div>
+
+    <div class="input-chat">
+        <input id="texto" type="text" placeholder="Escribe un mensaje...">
+        <button onclick="enviar()">Enviar</button>
     </div>
 
 </div>
