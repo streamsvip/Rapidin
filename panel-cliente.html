@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Rapidín</title>
+
+<style>
+
+body{
+
+font-family:Arial;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+background:#f5f5f5;
+
+}
+
+.card{
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+text-align:center;
+
+}
+
+h1{
+
+color:#E53935;
+
+}
+
+button{
+
+margin-top:20px;
+
+padding:15px 30px;
+
+background:#E53935;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Bienvenido a Rapidín 🚀</h1>
+
+<p>El login funciona correctamente.</p>
+
+<button onclick="cerrar()">
+
+Cerrar sesión
+
+</button>
+
+</div>
+
+<script>
+
+function cerrar(){
+
+localStorage.clear();
+
+location.href="login.html";
+
+}
+
+</script>
+
+</body>
+
+</html>
