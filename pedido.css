@@ -1,225 +1,25 @@
-/*==================================
-      RAPIDÍN - NUEVO PEDIDO
-==================================*/
+.opcional{
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+    color:#888;
 
-body{
-    background:#f4f6fb;
-    color:#222;
-}
+    font-size:13px;
 
-/* HEADER */
-
-header{
-
-    height:75px;
-
-    background:#ffffff;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:20px;
-
-    padding:0 20px;
-
-    box-shadow:0 4px 20px rgba(0,0,0,.08);
-
-    position:sticky;
-
-    top:0;
-
-    z-index:999;
+    font-weight:400;
 
 }
 
-.volver{
-
-    text-decoration:none;
-
-    font-size:28px;
-
-    color:#e53935;
-
-    font-weight:bold;
-
-}
-
-header h2{
-
-    font-size:25px;
-
-}
-
-/* CONTENEDOR */
-
-.contenedor{
-
-    width:min(700px,92%);
-
-    margin:35px auto;
-
-    background:#fff;
-
-    padding:30px;
-
-    border-radius:25px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.08);
-
-}
-
-/* LABEL */
-
-label{
+.ayuda{
 
     display:block;
 
-    margin-top:20px;
+    margin-top:8px;
 
-    margin-bottom:8px;
+    margin-bottom:12px;
 
-    font-weight:600;
+    color:#777;
 
-}
+    font-size:13px;
 
-/* INPUTS */
+    line-height:1.5;
 
-input,
-
-textarea{
-
-    width:100%;
-
-    padding:16px;
-
-    border:2px solid #ececec;
-
-    border-radius:15px;
-
-    outline:none;
-
-    transition:.3s;
-
-    font-size:15px;
-
-}
-
-textarea{
-
-    resize:none;
-
-    height:130px;
-
-}
-
-input:focus,
-
-textarea:focus{
-
-    border-color:#e53935;
-
-    box-shadow:0 0 15px rgba(229,57,53,.15);
-
-}
-
-/* FILE */
-
-input[type=file]{
-
-    background:#fafafa;
-
-    cursor:pointer;
-
-}
-
-/* BOTÓN */
-
-button{
-
-    width:100%;
-
-    margin-top:35px;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:linear-gradient(135deg,#ff4d4d,#d50000);
-
-    color:white;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 15px 30px rgba(213,0,0,.30);
-
-}
-
-/* TARJETA INFO */
-
-.info{
-
-    margin-top:25px;
-
-    padding:18px;
-
-    border-radius:15px;
-
-    background:#fff7f7;
-
-    border-left:5px solid #e53935;
-
-    color:#555;
-
-    line-height:1.7;
-
-}
-
-/* RESPONSIVE */
-
-@media(max-width:700px){
-
-.contenedor{
-
-padding:22px;
-
-}
-
-header h2{
-
-font-size:21px;
-
-}
-
-button{
-
-font-size:17px;
-
-}
-.opcional {
-    font-size: 12px;
-    color: #888;
-    font-weight: 400;
-}
 }
