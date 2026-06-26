@@ -55,3 +55,54 @@ button:hover {
     background: #00c853;
     color: white;
 }
+.chat {
+    margin: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.mensajes {
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.msg {
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.cliente {
+    background: #e3f2fd;
+    margin-left: auto;
+    text-align: right;
+}
+
+.repartidor {
+    background: #f1f1f1;
+}
+
+.input-chat {
+    display: flex;
+    border-top: 1px solid #eee;
+}
+
+.input-chat input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.input-chat button {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
