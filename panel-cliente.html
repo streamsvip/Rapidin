@@ -1,102 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Rapidín | Panel</title>
 
-<title>Rapidín</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-body{
-
-font-family:Arial;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-height:100vh;
-
-background:#f5f5f5;
-
-}
-
-.card{
-
-background:white;
-
-padding:40px;
-
-border-radius:20px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.15);
-
-text-align:center;
-
-}
-
-h1{
-
-color:#E53935;
-
-}
-
-button{
-
-margin-top:20px;
-
-padding:15px 30px;
-
-background:#E53935;
-
-color:white;
-
-border:none;
-
-border-radius:10px;
-
-cursor:pointer;
-
-}
-
-</style>
+<link rel="stylesheet" href="panel.css">
 
 </head>
 
 <body>
 
-<div class="card">
+<header>
 
-<h1>Bienvenido a Rapidín 🚀</h1>
+<img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
 
-<p>El login funciona correctamente.</p>
+<div>
 
-<button onclick="cerrar()">
+<h2>Hola 👋</h2>
+
+<p id="usuario"></p>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<h1>¿Qué necesitas hoy?</h1>
+
+<p>Pide cualquier cosa en Camaná y recibe ofertas de repartidores en minutos.</p>
+
+</section>
+
+<section class="acciones">
+
+<a href="nuevo-pedido.html" class="card">
+
+<div class="icono">📦</div>
+
+<h3>Nuevo pedido</h3>
+
+<p>Solicita cualquier compra, envío o retiro.</p>
+
+</a>
+
+<a href="#" class="card">
+
+<div class="icono">🛵</div>
+
+<h3>Mis pedidos</h3>
+
+<p>Consulta el estado de tus pedidos.</p>
+
+</a>
+
+<a href="#" class="card">
+
+<div class="icono">❤️</div>
+
+<h3>Favoritos</h3>
+
+<p>Direcciones y lugares frecuentes.</p>
+
+</a>
+
+<a href="#" class="card">
+
+<div class="icono">👤</div>
+
+<h3>Mi perfil</h3>
+
+<p>Edita tus datos personales.</p>
+
+</a>
+
+</section>
+
+<button id="salir">
 
 Cerrar sesión
 
 </button>
 
-</div>
-
-<script>
-
-function cerrar(){
-
-localStorage.clear();
-
-location.href="login.html";
-
-}
-
-</script>
+<script src="panel.js"></script>
 
 </body>
-
 </html>
