@@ -1,7 +1,7 @@
-let map;
-let markerRepartidor;
+let map = null;
+let markerRepartidor = null;
 
-// UI elements
+// UI
 const estado = document.getElementById("estado");
 const estadoPedido = document.getElementById("estadoPedido");
 const repartidor = document.getElementById("repartidor");
@@ -11,66 +11,60 @@ const infoRepartidor = document.getElementById("infoRepartidor");
 const mensajes = document.getElementById("mensajes");
 const input = document.getElementById("texto");
 
-// datos del pedido (desde ofertas)
-const data = JSON.parse(localStorage.getItem("ofertaSeleccionada")) || {
+// DATOS
+let data;
+
+try {
+    data = JSON.parse(localStorage.getItem("ofertaSeleccionada"));
+} catch (e) {
+    data = null;
+}
+
+data = data || {
     nombre: "Repartidor demo",
     tiempo: 15,
     precio: 40
 };
 
-// -------------------------
+// INFO
+repartidor.textContent = data.nombre;
+infoRepartidor.textContent =
+    `Llegará en ~${data.tiempo} min | Pago S/ ${data.precio}`;
+
 // MAPA
-// -------------------------
 function initMap() {
 
     const mapDiv = document.getElementById("map");
 
-    if (!mapDiv) {
-        mapDiv.innerHTML = "Error: no existe #map";
-        return;
-    }
+    if (!mapDiv) return;
 
     if (typeof L === "undefined") {
-        mapDiv.innerHTML = `
-            <div style="
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                height:100%;
-                font-size:18px;
-                font-weight:bold;
-            ">
-                Error cargando mapa
-            </div>
-        `;
+        mapDiv.innerHTML = "Error cargando Leaflet";
         return;
     }
 
     map = L.map("map").setView([-16.409, -71.537], 13);
 
     L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
-            attribution: "© OpenStreetMap"
+            maxZoom: 19,
+            attribution: "&copy; OpenStreetMap"
         }
     ).addTo(map);
 
     markerRepartidor = L.marker([-16.409, -71.537])
         .addTo(map)
-        .bindPopup("Repartidor");
+        .bindPopup(data.nombre);
+
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 300);
+
+    iniciarTracking();
 }
 
-window.onload = initMap;
-
-// -------------------------
-// INFO REPARTIDOR
-// -------------------------
-repartidor.innerText = data.nombre;
-infoRepartidor.innerText = `Llegará en ~${data.tiempo} min | Pago S/ ${data.precio}`;
-
-// -------------------------
-// ESTADOS DEL PEDIDO
-// -------------------------
+// ESTADOS
 const estados = [
     "Buscando ruta óptima...",
     "Repartidor aceptó el pedido",
@@ -84,52 +78,66 @@ let index = 0;
 
 function avanzarEstado() {
 
+    if (!map || !markerRepartidor) return;
+
     if (index >= estados.length) {
-        estadoPedido.innerText = "Pedido finalizado";
-        estado.innerText = "Entregado";
+
+        estadoPedido.textContent = "Pedido finalizado";
+        estado.textContent = "Entregado";
+
         return;
     }
 
-    estadoPedido.innerText = estados[index];
-    estado.innerText = estados[index];
+    estadoPedido.textContent = estados[index];
+    estado.textContent = estados[index];
 
     moverRepartidor();
 
     index++;
 }
 
-// movimiento simulado
 function moverRepartidor() {
+
+    if (!markerRepartidor) return;
 
     const lat = -16.409 + (Math.random() * 0.01);
     const lng = -71.537 + (Math.random() * 0.01);
 
     markerRepartidor.setLatLng([lat, lng]);
-    map.panTo([lat, lng]);
+
+    if (map) {
+        map.panTo([lat, lng]);
+    }
 }
 
-// -------------------------
+function iniciarTracking() {
+
+    avanzarEstado();
+
+    setInterval(() => {
+        avanzarEstado();
+    }, 4000);
+}
+
 // BOTONES
-// -------------------------
 function llamar() {
     alert("Llamando a " + data.nombre);
 }
 
 function chat() {
-    alert("Chat activo abajo 👇");
+    document.getElementById("texto").focus();
 }
 
-// -------------------------
 // CHAT
-// -------------------------
-let chat = [];
+let chatData = [];
 
 function enviar() {
 
     const texto = input.value.trim();
-    if (texto === "") return;
 
-    chat.push({
+    if (!texto) return;
+
+    chatData.push({
         tipo: "cliente",
         texto
     });
@@ -140,7 +148,7 @@ function enviar() {
 
     setTimeout(() => {
 
-        chat.push({
+        chatData.push({
             tipo: "repartidor",
             texto: respuestaRandom()
         });
@@ -160,28 +168,26 @@ function respuestaRandom() {
         "Entendido ✔️"
     ];
 
-    return respuestas[Math.floor(Math.random() * respuestas.length)];
+    return respuestas[
+        Math.floor(Math.random() * respuestas.length)
+    ];
 }
 
 function renderChat() {
 
     mensajes.innerHTML = "";
 
-    chat.forEach(m => {
+    chatData.forEach(m => {
 
         const div = document.createElement("div");
-        div.classList.add("msg", m.tipo);
-        div.innerText = m.texto;
+
+        div.className = "msg " + m.tipo;
+        div.textContent = m.texto;
 
         mensajes.appendChild(div);
-
     });
 
     mensajes.scrollTop = mensajes.scrollHeight;
 }
 
-// -------------------------
-// LOOP SIMULACIÓN
-// -------------------------
-setInterval(avanzarEstado, 4000);
-avanzarEstado();
+window.addEventListener("load", initMap);
