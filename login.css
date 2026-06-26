@@ -1,0 +1,297 @@
+/*=====================================
+  RAPIDÍN - LOGIN
+======================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(135deg,#ff5a5f,#d50000);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+}
+
+/* Fondo decorativo */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    top:-120px;
+
+    left:-120px;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:50%;
+
+    bottom:-120px;
+
+    right:-120px;
+
+}
+
+/* Contenedor */
+
+.container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* Tarjeta */
+
+.login-box{
+
+    width:100%;
+
+    max-width:420px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:25px;
+
+    padding:45px;
+
+    text-align:center;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.25);
+
+    animation:fadeUp .8s ease;
+
+}
+
+.logo{
+
+    width:90px;
+
+    margin-bottom:20px;
+
+}
+
+.login-box h1{
+
+    color:#fff;
+
+    font-size:34px;
+
+    margin-bottom:8px;
+
+}
+
+.login-box p{
+
+    color:#f5f5f5;
+
+    margin-bottom:35px;
+
+}
+
+/* Campos */
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+input{
+
+    margin-bottom:18px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+input:focus{
+
+    transform:scale(1.02);
+
+    box-shadow:0 0 15px rgba(255,255,255,.4);
+
+}
+
+/* Botón */
+
+button{
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    color:#d50000;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-4px);
+
+    background:#f1f1f1;
+
+}
+
+/* Links */
+
+.links{
+
+    margin-top:25px;
+
+}
+
+.links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.links a:hover{
+
+    text-decoration:underline;
+
+}
+
+.volver{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    color:white;
+
+    text-decoration:none;
+
+    opacity:.85;
+
+}
+
+.volver:hover{
+
+    opacity:1;
+
+}
+
+/* Animación */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(50px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Responsive */
+
+@media(max-width:500px){
+
+.login-box{
+
+padding:30px;
+
+}
+
+.logo{
+
+width:75px;
+
+}
+
+.login-box h1{
+
+font-size:28px;
+
+}
+
+}
