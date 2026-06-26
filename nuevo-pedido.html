@@ -30,26 +30,40 @@
 <div class="contenedor">
 
 <label>¿Qué necesitas?</label>
+
 <input
 type="text"
 placeholder="Ejemplo: Comprar una pizza, medicamentos, retirar documentos...">
 
 <label>Descripción</label>
+
 <textarea
 placeholder="Escribe todos los detalles del pedido..."></textarea>
 
-<!-- CAMBIO IMPORTANTE: ahora es opcional -->
-<label>Lugar donde comprar o recoger <span class="opcional">(opcional)</span></label>
+<label>
+Lugar donde comprar o recoger
+<span class="opcional">(opcional)</span>
+</label>
+
 <input
 type="text"
-placeholder="Ejemplo: Plaza Vea Camaná (si aplica)">
+placeholder="Ejemplo: Plaza Vea, Inkafarma, Mercado Central o punto de recojo">
+
+<small class="ayuda">
+Si ya sabes dónde comprar o recoger el pedido, indícalo aquí. Si no, puedes dejarlo vacío.
+</small>
 
 <label>Dirección de entrega</label>
+
 <input
 type="text"
 placeholder="Ejemplo: Urb. La Primavera Mz A Lote 8">
 
-<label>Foto <span class="opcional">(opcional)</span></label>
+<label>
+Foto
+<span class="opcional">(opcional)</span>
+</label>
+
 <input type="file">
 
 <button id="publicar">
