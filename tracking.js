@@ -23,19 +23,44 @@ const data = JSON.parse(localStorage.getItem("ofertaSeleccionada")) || {
 // -------------------------
 function initMap() {
 
-    map = L.map('map').setView([-16.409, -71.537], 13);
+    const mapDiv = document.getElementById("map");
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
+    if (!mapDiv) {
+        mapDiv.innerHTML = "Error: no existe #map";
+        return;
+    }
+
+    if (typeof L === "undefined") {
+        mapDiv.innerHTML = `
+            <div style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                height:100%;
+                font-size:18px;
+                font-weight:bold;
+            ">
+                Error cargando mapa
+            </div>
+        `;
+        return;
+    }
+
+    map = L.map("map").setView([-16.409, -71.537], 13);
+
+    L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            attribution: "© OpenStreetMap"
+        }
+    ).addTo(map);
 
     markerRepartidor = L.marker([-16.409, -71.537])
         .addTo(map)
-        .bindPopup("Repartidor")
-        .openPopup();
+        .bindPopup("Repartidor");
 }
 
-initMap();
+window.onload = initMap;
 
 // -------------------------
 // INFO REPARTIDOR
