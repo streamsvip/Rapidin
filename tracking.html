@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tracking | Rapidín</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="tracking.css">
+
+<!-- Leaflet (mapa gratis sin API key) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+
+<body>
+
+<header>
+<h2>📦 Seguimiento del pedido</h2>
+<p id="estado">Preparando ruta...</p>
+</header>
+
+<div id="map"></div>
+
+<div class="panel">
+
+    <div class="card">
+        <h3 id="repartidor">Repartidor</h3>
+        <p id="infoRepartidor">Conectando...</p>
+    </div>
+
+    <div class="card">
+        <h3>Estado</h3>
+        <p id="estadoPedido">Buscando repartidor...</p>
+    </div>
+
+    <div class="acciones">
+        <button onclick="llamar()">📞 Llamar</button>
+        <button onclick="chat()">💬 Chat</button>
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="tracking.js"></script>
+
+</body>
+
+</html>
