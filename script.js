@@ -28,13 +28,10 @@ cards.forEach((card) => {
 });
 
 // =============================================
-// SOLO activar mensaje en botones que aún no estén listos
+// NO BLOQUEAR los botones principales
 // =============================================
 
-// Ejemplo: Si quieres que solo algunos botones muestren el mensaje temporal
-// Por ahora lo comento para que todo funcione
-
-/*
+// Si quieres mostrar mensaje temporal solo en algunos botones, usa esta clase:
 document.querySelectorAll(".btn-coming-soon").forEach(btn => {
     btn.addEventListener("click", function(e){
         e.preventDefault();
@@ -46,4 +43,3 @@ document.querySelectorAll(".btn-coming-soon").forEach(btn => {
         });
     });
 });
-*/
