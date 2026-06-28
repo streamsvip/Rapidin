@@ -1,72 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar | Rapidín</title>
 
-<title>Ingresar | Rapidín</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style-login.css">
+    <link rel="stylesheet" href="style-login.css">
 </head>
-
 <body>
 
 <div class="container">
+    <div class="login-box">
 
-  <div class="login-box">
+        <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo" alt="Logo Rapidín">
 
-    <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
+        <h1>Bienvenido</h1>
+        <p>Inicia sesión para continuar</p>
 
-    <h1>Bienvenido</h1>
-    <p>Inicia sesión para continuar</p>
+        <form id="loginForm">
+            <input 
+                type="email" 
+                id="email" 
+                placeholder="Correo electrónico" 
+                required
+            >
 
-    <!-- LOGIN FORM -->
-    <form id="loginForm">
+            <div class="pass-wrap">
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="Contraseña" 
+                    required
+                >
+                <span id="togglePass" class="eye" role="button" tabindex="0">👁</span>
+            </div>
 
-      <!-- EMAIL -->
-      <input 
-        type="email"
-        id="email"
-        placeholder="Correo electrónico"
-        required
-      >
+            <button type="submit" id="loginBtn">Ingresar</button>
+        </form>
 
-      <!-- PASSWORD WRAPPER -->
-      <div class="pass-wrap">
+        <div class="links">
+            <a href="registro.html">Crear cuenta</a>
+        </div>
 
-        <input 
-          type="password"
-          id="password"
-          placeholder="Contraseña"
-          required
-        >
+        <a href="index.html" class="volver">← Volver al inicio</a>
 
-        <!-- OJO (CLICK REAL) -->
-        <span id="togglePass" class="eye" role="button" tabindex="0">
-          👁
-        </span>
-
-      </div>
-
-      <button type="submit" id="loginBtn">
-        Ingresar
-      </button>
-
-    </form>
-
-    <div class="links">
-      <a href="registro.html">Crear cuenta</a>
     </div>
-
-    <a href="index.html" class="volver">← Volver al inicio</a>
-
-  </div>
-
 </div>
 
 <script type="module" src="login.js"></script>
