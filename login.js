@@ -13,10 +13,16 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Toggle de contraseña
+    console.log("✅ Login JS cargado correctamente");
+
+    // === TOGGLE CONTRASEÑA (Más robusto) ===
     toggle.style.cursor = "pointer";
+    toggle.style.pointerEvents = "all";
+    toggle.style.zIndex = "30";
 
     toggle.addEventListener("click", () => {
+        console.log("👁 Click en el ojo detectado"); // Para debug
+
         if (password.type === "password") {
             password.type = "text";
             toggle.textContent = "🙈";
@@ -26,7 +32,12 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Login
+    // Backup por si el click falla en algunos dispositivos
+    toggle.addEventListener("mousedown", () => {
+        console.log("👁 Click (mousedown) detectado");
+    });
+
+    // === LOGIN ===
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
