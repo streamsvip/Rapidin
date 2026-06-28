@@ -2,6 +2,7 @@ import { auth, db } from "./firebase.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
+// SweetAlert2 (Asegúrate de tener el script en tu HTML)
 window.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("registerForm");
@@ -35,7 +36,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Submit
+    // SUBMIT FORM
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -45,18 +46,21 @@ window.addEventListener("DOMContentLoaded", () => {
         const claveValor = clave.value.trim();
         const confirmarValor = confirmar.value.trim();
 
-        if (!nombreValor) return alert("Ingresa tu nombre.");
-        if (!telefonoValor || telefonoValor.length !== 9) return alert("Ingresa un número válido de 9 dígitos.");
-        if (!correoValor) return alert("Ingresa tu correo.");
-        if (claveValor.length < 6) return alert("La contraseña debe tener al menos 6 caracteres.");
-        if (claveValor !== confirmarValor) return alert("Las contraseñas no coinciden.");
+        // Validaciones
+        if (!nombreValor) return Swal.fire({ title: "Error", text: "Ingresa tu nombre.", icon: "warning" });
+        if (!telefonoValor || telefonoValor.length !== 9) return Swal.fire({ title: "Error", text: "Ingresa un número válido de 9 dígitos.", icon: "warning" });
+        if (!correoValor) return Swal.fire({ title: "Error", text: "Ingresa tu correo.", icon: "warning" });
+        if (claveValor.length < 6) return Swal.fire({ title: "Error", text: "La contraseña debe tener al menos 6 caracteres.", icon: "warning" });
+        if (claveValor !== confirmarValor) return Swal.fire({ title: "Error", text: "Las contraseñas no coinciden.", icon: "warning" });
 
+        // Desactivar botón
         boton.disabled = true;
         boton.textContent = "Creando cuenta...";
 
         try {
             const credencial = await createUserWithEmailAndPassword(auth, correoValor, claveValor);
 
+            // Guardar datos en Firestore
             await setDoc(doc(db, "usuarios", credencial.user.uid), {
                 uid: credencial.user.uid,
                 nombre: nombreValor,
@@ -66,15 +70,32 @@ window.addEventListener("DOMContentLoaded", () => {
                 tipo: "cliente"
             });
 
-            alert("¡Cuenta creada correctamente!");
-            window.location.href = "panel-cliente.html";
+            // Notificación de éxito
+            Swal.fire({
+                title: "¡Cuenta creada exitosamente!",
+                text: "Bienvenido a Rapidín",
+                icon: "success",
+                confirmButtonText: "Ir al Panel",
+                confirmButtonColor: "#e53935",
+                showConfirmButton: true
+            }).then(() => {
+                window.location.href = "panel-cliente.html";
+            });
 
         } catch (error) {
             console.error(error);
             let msg = "Error al crear la cuenta";
+
             if (error.code === "auth/email-already-in-use") msg = "Este correo ya está registrado";
             if (error.code === "auth/weak-password") msg = "La contraseña es muy débil";
-            alert(msg);
+            if (error.code === "auth/invalid-email") msg = "El correo no es válido";
+
+            Swal.fire({
+                title: "Error",
+                text: msg,
+                icon: "error",
+                confirmButtonColor: "#e53935"
+            });
         } finally {
             boton.disabled = false;
             boton.textContent = "Crear cuenta";
