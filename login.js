@@ -1,14 +1,21 @@
 // =====================================
-// RAPIDÍN
-// login.js
+// RAPIDÍN - LOGIN FIREBASE
 // =====================================
 
+import { auth } from "./firebase.js";
+
+import {
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
 const form = document.querySelector("form");
+
 const email = document.querySelector('input[type="email"]');
+
 const password = document.querySelector('input[type="password"]');
+
 const button = document.getElementById("loginBtn");
 
-// Evita que el formulario recargue la página
 form.addEventListener("submit", function(e){
 
     e.preventDefault();
@@ -17,70 +24,56 @@ form.addEventListener("submit", function(e){
 
 });
 
-// También funciona al pulsar el botón
-button.addEventListener("click", function(e){
-
-    e.preventDefault();
-
-    iniciarSesion();
-
-});
-
-function iniciarSesion(){
+async function iniciarSesion(){
 
     const correo = email.value.trim();
+
     const clave = password.value.trim();
 
     if(correo === ""){
 
-        alert("Ingrese su correo electrónico.");
-
-        email.focus();
-
+        alert("Ingrese su correo.");
         return;
 
     }
 
-    if(!validarCorreo(correo)){
+    if(clave === ""){
 
-        alert("El correo no es válido.");
-
-        email.focus();
-
+        alert("Ingrese su contraseña.");
         return;
 
     }
 
-    if(clave.length < 6){
+    try{
 
-        alert("La contraseña debe tener al menos 6 caracteres.");
+        button.disabled = true;
 
-        password.focus();
+        button.innerHTML = "Ingresando...";
 
-        return;
+        const usuario =
+            await signInWithEmailAndPassword(
+                auth,
+                correo,
+                clave
+            );
+
+        localStorage.setItem(
+            "uid",
+            usuario.user.uid
+        );
+
+        window.location.href =
+            "panel-cliente.html";
 
     }
+    catch(error){
 
-    // Animación del botón
-    button.innerHTML = "Ingresando...";
-    button.disabled = true;
+        alert("Correo o contraseña incorrectos.");
 
-    setTimeout(()=>{
+        button.disabled = false;
 
-        // Aquí conectaremos Firebase más adelante
+        button.innerHTML = "Ingresar";
 
-        localStorage.setItem("usuario",correo);
-
-        window.location.href="panel-cliente.html";
-
-    },1500);
-
-}
-
-function validarCorreo(correo){
-
-    const expresion=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    return expresion.test(correo);
+    }
 
 }
