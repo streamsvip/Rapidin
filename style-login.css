@@ -149,15 +149,16 @@ button:hover{
     font-size:18px;
     color:#777;
     user-select:none;
-    z-index:10;
+    z-index:20;
+    pointer-events: all;     /* ← CLAVE para que funcione el clic */
 }
 
 .eye:hover{
-    color:#000;
+    color:#e53935;
 }
 
 /* ==========================================
-   TELEFONO +51 (NO TOCADO - SOLO ASEGURADO)
+   TELEFONO +51 
 ========================================== */
 
 .phone-box{
@@ -226,19 +227,7 @@ button:hover{
     }
 
     .eye{
-    position:absolute;
-    right:14px;
-    top:50%;
-    transform:translateY(-50%);
-    cursor:pointer;
-    font-size:18px;
-    color:#777;
-    user-select:none;
-    z-index:20;           /* Subí un poco */
-    pointer-events: all;  /* ← ESTO ES CLAVE */
-}
-
-.eye:hover{
-    color:#e53935;
-}
+        font-size:18px;
+        right:14px;
+    }
 }
