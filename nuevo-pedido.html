@@ -29,31 +29,34 @@
 
 <div class="contenedor">
 
-<label>¿Qué necesitas?</label>
+<label for="pedido">¿Qué necesitas?</label>
 
 <input
+id="pedido"
 type="text"
 placeholder="Ejemplo: Comprar una pizza, medicamentos, retirar documentos...">
 
 <small class="ayuda">
-Describe de forma breve lo que necesitas para que los repartidores entiendan tu solicitud rápidamente.
+Describe brevemente lo que necesitas para que los repartidores entiendan tu solicitud.
 </small>
 
-<label>Descripción del pedido</label>
+<label for="descripcion">Descripción del pedido</label>
 
 <textarea
+id="descripcion"
 placeholder="Escribe todos los detalles importantes del pedido..."></textarea>
 
 <small class="ayuda">
-Indica cantidades, marcas, sabores, tamaños, referencias o cualquier detalle que ayude a completar correctamente tu pedido.
+Indica cantidades, marcas, sabores, tamaños, referencias o cualquier detalle importante.
 </small>
 
-<label>
+<label for="origen">
 Lugar sugerido de compra o recojo
 <span class="opcional">(opcional)</span>
 </label>
 
 <input
+id="origen"
 type="text"
 placeholder="Ejemplo: Plaza Vea, Inkafarma, Mercado Central o punto de recojo">
 
@@ -61,14 +64,15 @@ placeholder="Ejemplo: Plaza Vea, Inkafarma, Mercado Central o punto de recojo">
 Si tienes una tienda o punto de recojo en mente, escríbelo aquí. Si lo dejas vacío, el repartidor podrá elegir la mejor opción disponible según tu pedido.
 </small>
 
-<label>Dirección de entrega</label>
+<label for="destino">Dirección de entrega</label>
 
 <input
+id="destino"
 type="text"
 placeholder="Ejemplo: Urb. La Primavera Mz A Lote 8">
 
 <small class="ayuda">
-Ingresa una dirección exacta para facilitar la entrega y reducir tiempos de espera.
+Ingresa una dirección exacta para facilitar la entrega.
 </small>
 
 <label>
@@ -76,10 +80,12 @@ Foto de referencia
 <span class="opcional">(opcional)</span>
 </label>
 
-<input type="file">
+<input
+type="file"
+accept="image/*">
 
 <small class="ayuda">
-Puedes adjuntar una imagen del producto, receta médica, documento o cualquier referencia útil para el repartidor.
+Puedes adjuntar una foto del producto, receta médica, documento o cualquier referencia útil.
 </small>
 
 <button id="publicar">
