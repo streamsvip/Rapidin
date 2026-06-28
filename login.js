@@ -1,79 +1,38 @@
-// =====================================
-// RAPIDÍN - LOGIN FIREBASE
-// =====================================
-
 import { auth } from "./firebase.js";
 
 import {
     signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-const form = document.querySelector("form");
+const form = document.getElementById("loginForm");
 
-const email = document.querySelector('input[type="email"]');
+const email = document.getElementById("email");
+const password = document.getElementById("password");
 
-const password = document.querySelector('input[type="password"]');
+const showPass = document.getElementById("showLoginPass");
 
-const button = document.getElementById("loginBtn");
-
-form.addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    iniciarSesion();
-
+// 👁️ mostrar contraseña
+showPass.addEventListener("change", () => {
+    password.type = showPass.checked ? "text" : "password";
 });
 
-async function iniciarSesion(){
+// LOGIN REAL FIREBASE
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const correo = email.value.trim();
+    try {
 
-    const clave = password.value.trim();
-
-    if(correo === ""){
-
-        alert("Ingrese su correo.");
-        return;
-
-    }
-
-    if(clave === ""){
-
-        alert("Ingrese su contraseña.");
-        return;
-
-    }
-
-    try{
-
-        button.disabled = true;
-
-        button.innerHTML = "Ingresando...";
-
-        const usuario =
-            await signInWithEmailAndPassword(
-                auth,
-                correo,
-                clave
-            );
-
-        localStorage.setItem(
-            "uid",
-            usuario.user.uid
+        await signInWithEmailAndPassword(
+            auth,
+            email.value,
+            password.value
         );
 
-        window.location.href =
-            "panel-cliente.html";
+        alert("Bienvenido");
 
+        window.location.href = "panel-cliente.html";
+
+    } catch (error) {
+        alert("Error: " + error.message);
     }
-    catch(error){
-
-        alert("Correo o contraseña incorrectos.");
-
-        button.disabled = false;
-
-        button.innerHTML = "Ingresar";
-
-    }
-
-}
+});
