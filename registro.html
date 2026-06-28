@@ -2,99 +2,96 @@
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta | Rapidín</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<title>Crear Cuenta | Rapidín</title>
+    <link rel="stylesheet" href="style-login.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style-login.css">
-
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 
 <div class="container">
+    <div class="login-box">
 
-  <div class="login-box">
+        <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo" alt="Logo Rapidín">
 
-    <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
+        <h1>Crear Cuenta</h1>
+        <p>Regístrate para comenzar a usar Rapidín</p>
 
-    <h1>Crear Cuenta</h1>
+        <!-- REGISTER FORM -->
+        <form id="registerForm">
 
-    <p>Regístrate para comenzar a usar Rapidín</p>
+            <input 
+                type="text"
+                id="nombre"
+                placeholder="Nombre completo"
+                required
+            >
 
-    <!-- REGISTER FORM -->
-    <form id="registerForm">
+            <!-- TELEFONO -->
+            <div class="phone-box">
+                <span>+51</span>
+                <input 
+                    type="tel"
+                    id="telefono"
+                    placeholder="Número de celular"
+                    maxlength="9"
+                    inputmode="numeric"
+                    required
+                >
+            </div>
 
-      <input 
-        type="text"
-        id="nombre"
-        placeholder="Nombre completo"
-        required
-      >
+            <input 
+                type="email"
+                id="email"
+                placeholder="Correo electrónico"
+                required
+            >
+            <!-- Mensaje de error para correo -->
+            <div id="error-correo" class="error-msg"></div>
 
-      <!-- TELEFONO -->
-      <div class="phone-box">
-        <span>+51</span>
-        <input 
-          type="tel"
-          id="telefono"
-          placeholder="Número de celular"
-          maxlength="9"
-          inputmode="numeric"
-          required
-        >
-      </div>
+            <!-- PASSWORD -->
+            <div class="pass-wrap">
+                <input 
+                    type="password"
+                    id="password"
+                    placeholder="Contraseña"
+                    required
+                >
+                <span id="togglePass" class="eye">👁</span>
+            </div>
 
-      <input 
-        type="email"
-        id="email"
-        placeholder="Correo electrónico"
-        required
-      >
+            <!-- CONFIRM PASSWORD -->
+            <input 
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirmar contraseña"
+                required
+            >
+            <!-- Mensaje de error para contraseñas -->
+            <div id="error-clave" class="error-msg"></div>
 
-      <!-- PASSWORD -->
-      <div class="pass-wrap">
+            <button type="submit" id="registroBtn">
+                Crear cuenta
+            </button>
 
-        <input 
-          type="password"
-          id="password"
-          placeholder="Contraseña"
-          required
-        >
+        </form>
 
-        <span id="togglePass" class="eye">👁</span>
+        <div class="links">
+            <a href="login.html">Ya tengo una cuenta</a>
+        </div>
 
-      </div>
+        <a href="index.html" class="volver">← Volver al inicio</a>
 
-      <!-- CONFIRM PASSWORD -->
-      <input 
-        type="password"
-        id="confirmPassword"
-        placeholder="Confirmar contraseña"
-        required
-      >
-
-      <button type="submit" id="registroBtn">
-        Crear cuenta
-      </button>
-
-    </form>
-
-    <div class="links">
-      <a href="login.html">Ya tengo una cuenta</a>
     </div>
-
-    <a href="index.html" class="volver">← Volver al inicio</a>
-
-  </div>
-
 </div>
 
 <script type="module" src="registro.js"></script>
