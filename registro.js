@@ -1,109 +1,83 @@
 import { auth, db } from "./firebase.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-import {
-    createUserWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+window.addEventListener("DOMContentLoaded", () => {
 
-import {
-    doc,
-    setDoc
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+    const form = document.getElementById("registerForm");
+    const nombre = document.getElementById("nombre");
+    const telefono = document.getElementById("telefono");
+    const correo = document.getElementById("email");
+    const clave = document.getElementById("password");
+    const confirmar = document.getElementById("confirmPassword");
+    const boton = document.getElementById("registroBtn");
+    const toggle = document.getElementById("togglePass");
 
-// FORM
-const form = document.getElementById("registerForm");
-
-// INPUTS
-const nombre = document.getElementById("nombre");
-const telefono = document.getElementById("telefono");
-const correo = document.getElementById("email");
-const clave = document.getElementById("password");
-const confirmar = document.getElementById("confirmPassword");
-
-// BOTÓN
-const boton = document.getElementById("registroBtn");
-
-// OJO (seguro)
-const toggle = document.getElementById("togglePass");
-
-// SOLO NÚMEROS
-telefono.addEventListener("input", () => {
-    telefono.value = telefono.value.replace(/\D/g, "");
-});
-
-// 👁 evitar crash si no existe
-if (toggle) {
-
-    toggle.addEventListener("click", () => {
-
-        const isHidden = clave.type === "password";
-
-        clave.type = isHidden ? "text" : "password";
-        confirmar.type = isHidden ? "text" : "password";
-
-        toggle.textContent = isHidden ? "🙈" : "👁";
-    });
-}
-
-// SUBMIT
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const nombreValor = nombre.value.trim();
-    const telefonoValor = telefono.value.trim();
-    const correoValor = correo.value.trim();
-    const claveValor = clave.value.trim();
-    const confirmarValor = confirmar.value.trim();
-
-    if (!nombreValor) return alert("Ingresa tu nombre.");
-
-    if (!/^[0-9]{9}$/.test(telefonoValor)) {
-        return alert("Ingresa un número válido de 9 dígitos.");
+    if (!form || !boton) {
+        console.error("❌ No se encontró el formulario");
+        return;
     }
 
-    if (!correoValor) return alert("Ingresa tu correo.");
-
-    if (claveValor.length < 6) {
-        return alert("La contraseña debe tener al menos 6 caracteres.");
+    // Solo números en teléfono
+    if (telefono) {
+        telefono.addEventListener("input", () => {
+            telefono.value = telefono.value.replace(/\D/g, "");
+        });
     }
 
-    if (claveValor !== confirmarValor) {
-        return alert("Las contraseñas no coinciden.");
+    // Toggle ojo
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            const isHidden = clave.type === "password";
+            clave.type = isHidden ? "text" : "password";
+            if (confirmar) confirmar.type = isHidden ? "text" : "password";
+            toggle.textContent = isHidden ? "🙈" : "👁";
+        });
     }
 
-    try {
+    // Submit
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const nombreValor = nombre.value.trim();
+        const telefonoValor = telefono.value.trim();
+        const correoValor = correo.value.trim();
+        const claveValor = clave.value.trim();
+        const confirmarValor = confirmar.value.trim();
+
+        if (!nombreValor) return alert("Ingresa tu nombre.");
+        if (!telefonoValor || telefonoValor.length !== 9) return alert("Ingresa un número válido de 9 dígitos.");
+        if (!correoValor) return alert("Ingresa tu correo.");
+        if (claveValor.length < 6) return alert("La contraseña debe tener al menos 6 caracteres.");
+        if (claveValor !== confirmarValor) return alert("Las contraseñas no coinciden.");
 
         boton.disabled = true;
-        boton.innerHTML = "Creando cuenta...";
+        boton.textContent = "Creando cuenta...";
 
-        const credencial = await createUserWithEmailAndPassword(
-            auth,
-            correoValor,
-            claveValor
-        );
+        try {
+            const credencial = await createUserWithEmailAndPassword(auth, correoValor, claveValor);
 
-        await setDoc(
-            doc(db, "usuarios", credencial.user.uid),
-            {
+            await setDoc(doc(db, "usuarios", credencial.user.uid), {
                 uid: credencial.user.uid,
                 nombre: nombreValor,
                 telefono: "+51" + telefonoValor,
                 correo: correoValor,
                 fechaRegistro: Date.now(),
                 tipo: "cliente"
-            }
-        );
+            });
 
-        alert("Cuenta creada correctamente");
+            alert("¡Cuenta creada correctamente!");
+            window.location.href = "panel-cliente.html";
 
-        window.location.href = "panel-cliente.html";
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Error: " + error.message);
-
-        boton.disabled = false;
-        boton.innerHTML = "Crear cuenta";
-    }
+        } catch (error) {
+            console.error(error);
+            let msg = "Error al crear la cuenta";
+            if (error.code === "auth/email-already-in-use") msg = "Este correo ya está registrado";
+            if (error.code === "auth/weak-password") msg = "La contraseña es muy débil";
+            alert(msg);
+        } finally {
+            boton.disabled = false;
+            boton.textContent = "Crear cuenta";
+        }
+    });
 });
