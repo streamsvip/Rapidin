@@ -23,6 +23,7 @@
 
   <div class="login-box">
 
+    <!-- LOGO -->
     <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
 
     <h1>Bienvenido</h1>
@@ -39,18 +40,22 @@
         required
       >
 
-      <input 
-        type="password" 
-        id="password"
-        placeholder="Contraseña" 
-        required
-      >
-<div class="eye-box">
-  <label>
-    <input type="checkbox" id="showLoginPass">
-    Mostrar contraseña
-  </label>
-</div>
+      <!-- PASSWORD CON OJITO PRO -->
+      <div class="password-box">
+
+        <input 
+          type="password" 
+          id="password"
+          placeholder="Contraseña" 
+          required
+        >
+
+        <button type="button" id="togglePass" class="eye-btn">
+          👁
+        </button>
+
+      </div>
+
       <button type="submit" id="loginBtn">
         Ingresar
       </button>
@@ -71,7 +76,7 @@
 
 </div>
 
-<!-- 🔥 Firebase Login Module -->
+<!-- FIREBASE LOGIN -->
 <script type="module" src="login.js"></script>
 
 </body>
