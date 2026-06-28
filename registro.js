@@ -26,12 +26,26 @@ const confirmar = document.getElementById("confirmPassword");
 // BOTÓN
 const boton = document.getElementById("registroBtn");
 
-// 🔥 SOLO NUMEROS EN TELEFONO
+// OJITO
+const toggle = document.getElementById("togglePass");
+
+// 🔥 SOLO NUMEROS
 telefono.addEventListener("input", () => {
     telefono.value = telefono.value.replace(/\D/g, "");
 });
 
-// EVENTO
+// 👁 mostrar contraseña
+toggle.addEventListener("click", () => {
+
+    const isHidden = clave.type === "password";
+
+    clave.type = isHidden ? "text" : "password";
+    confirmar.type = isHidden ? "text" : "password";
+
+    toggle.textContent = isHidden ? "🙈" : "👁";
+});
+
+// SUBMIT
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     registrarUsuario();
@@ -46,29 +60,20 @@ async function registrarUsuario() {
     const confirmarValor = confirmar.value.trim();
 
     // VALIDACIONES
-    if (nombreValor === "") {
-        alert("Ingresa tu nombre.");
-        return;
-    }
+    if (!nombreValor) return alert("Ingresa tu nombre.");
 
     if (!/^[0-9]{9}$/.test(telefonoValor)) {
-        alert("Ingresa un número válido de 9 dígitos.");
-        return;
+        return alert("Ingresa un número válido de 9 dígitos.");
     }
 
-    if (correoValor === "") {
-        alert("Ingresa tu correo.");
-        return;
-    }
+    if (!correoValor) return alert("Ingresa tu correo.");
 
     if (claveValor.length < 6) {
-        alert("La contraseña debe tener al menos 6 caracteres.");
-        return;
+        return alert("La contraseña debe tener al menos 6 caracteres.");
     }
 
     if (claveValor !== confirmarValor) {
-        alert("Las contraseñas no coinciden.");
-        return;
+        return alert("Las contraseñas no coinciden.");
     }
 
     try {
@@ -76,20 +81,18 @@ async function registrarUsuario() {
         boton.disabled = true;
         boton.innerHTML = "Creando cuenta...";
 
-        // CREAR USUARIO AUTH
         const credencial = await createUserWithEmailAndPassword(
             auth,
             correoValor,
             claveValor
         );
 
-        // GUARDAR EN FIRESTORE
         await setDoc(
             doc(db, "usuarios", credencial.user.uid),
             {
                 uid: credencial.user.uid,
                 nombre: nombreValor,
-                telefono: "+51" + telefonoValor, // 🔥 con prefijo
+                telefono: "+51" + telefonoValor,
                 correo: correoValor,
                 fechaRegistro: Date.now(),
                 tipo: "cliente"
@@ -98,7 +101,7 @@ async function registrarUsuario() {
 
         alert("Cuenta creada correctamente.");
 
-        window.location.href = "login.html";
+        window.location.href = "panel-cliente.html";
 
     } catch (error) {
 
