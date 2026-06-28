@@ -28,6 +28,7 @@
                 placeholder="Correo electrónico" 
                 required
             >
+            <div id="error-email" class="error-msg"></div>
 
             <div class="pass-wrap">
                 <input 
@@ -37,6 +38,12 @@
                     required
                 >
                 <span id="togglePass" class="eye" role="button" tabindex="0">👁</span>
+            </div>
+            <div id="error-password" class="error-msg"></div>
+
+            <!-- Enlace de recuperar contraseña -->
+            <div class="forgot-link">
+                <a href="recuperar.html">¿Olvidaste tu contraseña?</a>
             </div>
 
             <button type="submit" id="loginBtn">Ingresar</button>
@@ -53,5 +60,6 @@
 
 <script type="module" src="login.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
