@@ -1,4 +1,3 @@
-
 /* ==========================================
    RAPIDÍN - LOGIN / REGISTRO (PRO UI)
 ========================================== */
@@ -126,7 +125,7 @@ button:hover{
 }
 
 /* ==========================================
-   PASSWORD (OJITO SIMPLE PRO)
+   PASSWORD (OJITO FUNCIONAL PRO)
 ========================================== */
 
 .pass-wrap{
@@ -150,6 +149,7 @@ button:hover{
     font-size:18px;
     color:#777;
     user-select:none;
+    z-index:10;
 }
 
 .eye:hover{
@@ -157,7 +157,7 @@ button:hover{
 }
 
 /* ==========================================
-   TELEFONO +51
+   TELEFONO +51 (NO TOCADO - SOLO ASEGURADO)
 ========================================== */
 
 .phone-box{
@@ -224,4 +224,21 @@ button:hover{
     .login-box h1{
         font-size:26px;
     }
+
+    .eye{
+    position:absolute;
+    right:14px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    font-size:18px;
+    color:#777;
+    user-select:none;
+    z-index:20;           /* Subí un poco */
+    pointer-events: all;  /* ← ESTO ES CLAVE */
+}
+
+.eye:hover{
+    color:#e53935;
+}
 }
