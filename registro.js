@@ -1,7 +1,17 @@
 // =====================================
-// RAPIDÍN
-// registro.js
+// RAPIDÍN - REGISTRO FIREBASE
 // =====================================
+
+import { auth, db } from "./firebase.js";
+
+import {
+    createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+    doc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 const form = document.querySelector("form");
 
@@ -23,15 +33,7 @@ form.addEventListener("submit", function(e){
 
 });
 
-boton.addEventListener("click", function(e){
-
-    e.preventDefault();
-
-    registrarUsuario();
-
-});
-
-function registrarUsuario(){
+async function registrarUsuario(){
 
     const nombreValor = nombre.value.trim();
 
@@ -44,19 +46,6 @@ function registrarUsuario(){
     if(nombreValor === ""){
 
         alert("Ingresa tu nombre.");
-
-        nombre.focus();
-
-        return;
-
-    }
-
-    if(!validarCorreo(correoValor)){
-
-        alert("Correo no válido.");
-
-        correo.focus();
-
         return;
 
     }
@@ -64,9 +53,6 @@ function registrarUsuario(){
     if(claveValor.length < 6){
 
         alert("La contraseña debe tener al menos 6 caracteres.");
-
-        clave.focus();
-
         return;
 
     }
@@ -74,31 +60,46 @@ function registrarUsuario(){
     if(claveValor !== confirmarValor){
 
         alert("Las contraseñas no coinciden.");
-
-        confirmar.focus();
-
         return;
 
     }
 
-    boton.disabled = true;
+    try{
 
-    boton.innerHTML = "Creando cuenta...";
+        boton.disabled = true;
 
-    setTimeout(()=>{
+        boton.innerHTML = "Creando cuenta...";
+
+        const credencial =
+            await createUserWithEmailAndPassword(
+                auth,
+                correoValor,
+                claveValor
+            );
+
+        await setDoc(
+            doc(db,"usuarios",credencial.user.uid),
+            {
+                uid: credencial.user.uid,
+                nombre: nombreValor,
+                correo: correoValor,
+                fechaRegistro: Date.now(),
+                tipo:"cliente"
+            }
+        );
 
         alert("Cuenta creada correctamente.");
 
-        window.location.href="login.html";
+        window.location.href = "login.html";
 
-    },1500);
+    }catch(error){
 
-}
+        alert(error.message);
 
-function validarCorreo(correo){
+        boton.disabled = false;
 
-    const expresion=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        boton.innerHTML = "Crear cuenta";
 
-    return expresion.test(correo);
+    }
 
 }
