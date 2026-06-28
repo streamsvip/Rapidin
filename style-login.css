@@ -276,4 +276,13 @@ font-size:28px;
   width: 100%;
   font-size: 14px;
 }
+.eye-box {
+  margin: 10px 0 15px;
+  font-size: 14px;
+  color: #444;
+}
+
+.eye-box label {
+  cursor: pointer;
+}
 }
