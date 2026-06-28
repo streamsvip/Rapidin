@@ -13,19 +13,20 @@ import {
     setDoc
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-// Formulario
+// FORM
 const form = document.getElementById("registerForm");
 
-// Inputs
+// INPUTS
 const nombre = document.getElementById("nombre");
+const telefono = document.getElementById("telefono");
 const correo = document.getElementById("email");
 const clave = document.getElementById("password");
 const confirmar = document.getElementById("confirmPassword");
 
-// Botón
+// BOTÓN
 const boton = document.getElementById("registroBtn");
 
-// Evento submit
+// EVENTO
 form.addEventListener("submit", function (e) {
     e.preventDefault();
     registrarUsuario();
@@ -34,13 +35,19 @@ form.addEventListener("submit", function (e) {
 async function registrarUsuario() {
 
     const nombreValor = nombre.value.trim();
+    const telefonoValor = telefono.value.trim();
     const correoValor = correo.value.trim();
     const claveValor = clave.value.trim();
     const confirmarValor = confirmar.value.trim();
 
-    // 🔥 VALIDACIONES
+    // VALIDACIONES
     if (nombreValor === "") {
         alert("Ingresa tu nombre.");
+        return;
+    }
+
+    if (telefonoValor === "") {
+        alert("Ingresa tu número de celular.");
         return;
     }
 
@@ -61,23 +68,23 @@ async function registrarUsuario() {
 
     try {
 
-        // 🔒 bloqueo botón
         boton.disabled = true;
         boton.innerHTML = "Creando cuenta...";
 
-        // 🔥 crear usuario en Firebase Auth
+        // CREAR USUARIO AUTH
         const credencial = await createUserWithEmailAndPassword(
             auth,
             correoValor,
             claveValor
         );
 
-        // 💾 guardar datos en Firestore
+        // GUARDAR EN FIRESTORE
         await setDoc(
             doc(db, "usuarios", credencial.user.uid),
             {
                 uid: credencial.user.uid,
                 nombre: nombreValor,
+                telefono: telefonoValor, // 🔥 AQUÍ SE GUARDA
                 correo: correoValor,
                 fechaRegistro: Date.now(),
                 tipo: "cliente"
@@ -86,7 +93,6 @@ async function registrarUsuario() {
 
         alert("Cuenta creada correctamente.");
 
-        // 🔁 redirigir a login
         window.location.href = "login.html";
 
     } catch (error) {
