@@ -30,30 +30,62 @@
 <div class="contenedor">
 
 <label>¿Qué necesitas?</label>
+
 <input
 type="text"
 placeholder="Ejemplo: Comprar una pizza, medicamentos, retirar documentos...">
 
-<label>Descripción</label>
-<textarea
-placeholder="Escribe todos los detalles del pedido..."></textarea>
-
-<!-- CAMBIO IMPORTANTE: ahora es opcional -->
-<label>Lugar donde comprar o recoger <span class="opcional">(opcional)</span></label>
 <small class="ayuda">
-Si ya sabes dónde comprar o recoger el pedido, indícalo aquí. Si no, puedes dejarlo vacío.
+Describe de forma breve lo que necesitas para que los repartidores entiendan tu solicitud rápidamente.
+</small>
+
+<label>Descripción del pedido</label>
+
+<textarea
+placeholder="Escribe todos los detalles importantes del pedido..."></textarea>
+
+<small class="ayuda">
+Indica cantidades, marcas, sabores, tamaños, referencias o cualquier detalle que ayude a completar correctamente tu pedido.
+</small>
+
+<label>
+Lugar sugerido de compra o recojo
+<span class="opcional">(opcional)</span>
+</label>
+
+<input
+type="text"
+placeholder="Ejemplo: Plaza Vea, Inkafarma, Mercado Central o punto de recojo">
+
+<small class="ayuda">
+Si tienes una tienda o punto de recojo en mente, escríbelo aquí. Si lo dejas vacío, el repartidor podrá elegir la mejor opción disponible según tu pedido.
 </small>
 
 <label>Dirección de entrega</label>
+
 <input
 type="text"
 placeholder="Ejemplo: Urb. La Primavera Mz A Lote 8">
 
-<label>Foto <span class="opcional">(opcional)</span></label>
+<small class="ayuda">
+Ingresa una dirección exacta para facilitar la entrega y reducir tiempos de espera.
+</small>
+
+<label>
+Foto de referencia
+<span class="opcional">(opcional)</span>
+</label>
+
 <input type="file">
 
+<small class="ayuda">
+Puedes adjuntar una imagen del producto, receta médica, documento o cualquier referencia útil para el repartidor.
+</small>
+
 <button id="publicar">
+
 PUBLICAR PEDIDO
+
 </button>
 
 </div>
