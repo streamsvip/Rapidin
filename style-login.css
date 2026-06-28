@@ -9,280 +9,206 @@
 }
 
 body{
-
     font-family:'Poppins',sans-serif;
-
     background:linear-gradient(135deg,#ff4b4b,#d90429);
-
     min-height:100vh;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     padding:20px;
-
 }
 
 /* CONTENEDOR */
-
 .container{
-
     width:100%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
 }
 
 /* TARJETA */
-
 .login-box{
-
     width:100%;
-
     max-width:420px;
-
     background:#ffffff;
-
     border-radius:25px;
-
     padding:40px 30px;
-
     box-shadow:0 20px 50px rgba(0,0,0,.18);
-
     text-align:center;
-
     animation:subir .7s ease;
-
 }
 
 /* LOGO */
-
 .logo{
-
     width:120px;
-
     display:block;
-
     margin:0 auto 20px;
-
 }
 
 /* TITULO */
-
 .login-box h1{
-
     font-size:32px;
-
     color:#222;
-
     margin-bottom:10px;
-
 }
 
 .login-box p{
-
     color:#666;
-
     margin-bottom:30px;
-
 }
 
-/* FORMULARIO */
-
+/* FORM */
 form{
-
     display:flex;
-
     flex-direction:column;
-
 }
 
 /* INPUTS */
-
 input{
-
     width:100%;
-
     padding:16px;
-
     margin-bottom:18px;
-
     border:2px solid #ececec;
-
     border-radius:14px;
-
     font-size:16px;
-
     outline:none;
-
     transition:.3s;
-
 }
 
 input:focus{
-
     border-color:#e53935;
-
 }
 
 /* BOTÓN */
-
 button{
-
     width:100%;
-
     padding:16px;
-
     border:none;
-
     border-radius:14px;
-
     background:#e53935;
-
     color:white;
-
     font-size:17px;
-
     font-weight:600;
-
     cursor:pointer;
-
     transition:.3s;
-
 }
 
 button:hover{
-
     background:#c62828;
-
     transform:translateY(-2px);
-
 }
 
 /* LINKS */
-
 .links{
-
     margin-top:20px;
-
 }
 
 .links a{
-
     color:#e53935;
-
     text-decoration:none;
-
     font-weight:600;
-
 }
 
 .links a:hover{
-
     text-decoration:underline;
-
 }
 
 .volver{
-
     display:inline-block;
-
     margin-top:25px;
-
     color:#555;
-
     text-decoration:none;
-
 }
 
 .volver:hover{
-
     color:#e53935;
-
 }
 
-/* ANIMACIÓN */
+/* =========================
+   PASSWORD BOX (OJITO PRO)
+========================= */
 
-@keyframes subir{
-
-from{
-
-opacity:0;
-
-transform:translateY(30px);
-
+.password-box{
+    position:relative;
+    width:100%;
+    margin-bottom:18px;
 }
 
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
+.password-box input{
+    width:100%;
+    padding-right:45px;
 }
 
+.eye-btn{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    font-size:18px;
+    color:#666;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:480px){
-
-.login-box{
-
-padding:30px 20px;
-
+.eye-btn:hover{
+    color:#000;
 }
 
-.logo{
+/* =========================
+   TELÉFONO +51
+========================= */
 
-width:100px;
-
-}
-
-.login-box h1{
-
-font-size:28px;
-
-}
 .phone-box {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 15px;
-  background: white;
+    display:flex;
+    align-items:center;
+    border:1px solid #ccc;
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:18px;
+    background:white;
 }
 
 .phone-box .prefix {
-  background: #f2f2f2;
-  padding: 12px 10px;
-  font-weight: 600;
-  color: #333;
-  border-right: 1px solid #ddd;
+    background:#f2f2f2;
+    padding:16px 12px;
+    font-weight:600;
+    color:#333;
+    border-right:1px solid #ddd;
 }
 
 .phone-box input {
-  border: none;
-  outline: none;
-  padding: 12px;
-  width: 100%;
-  font-size: 14px;
-}
-.eye-box {
-  margin: 10px 0 15px;
-  font-size: 14px;
-  color: #444;
+    border:none;
+    outline:none;
+    padding:16px;
+    width:100%;
+    font-size:16px;
 }
 
-.eye-box label {
-  cursor: pointer;
+/* ANIMACIÓN */
+@keyframes subir{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
+
+/* RESPONSIVE */
+@media(max-width:480px){
+
+    .login-box{
+        padding:30px 20px;
+    }
+
+    .logo{
+        width:100px;
+    }
+
+    .login-box h1{
+        font-size:28px;
+    }
 }
