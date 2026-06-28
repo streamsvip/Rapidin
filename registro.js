@@ -26,6 +26,11 @@ const confirmar = document.getElementById("confirmPassword");
 // BOTÓN
 const boton = document.getElementById("registroBtn");
 
+// 🔥 SOLO NUMEROS EN TELEFONO
+telefono.addEventListener("input", () => {
+    telefono.value = telefono.value.replace(/\D/g, "");
+});
+
 // EVENTO
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -46,8 +51,8 @@ async function registrarUsuario() {
         return;
     }
 
-    if (telefonoValor === "") {
-        alert("Ingresa tu número de celular.");
+    if (!/^[0-9]{9}$/.test(telefonoValor)) {
+        alert("Ingresa un número válido de 9 dígitos.");
         return;
     }
 
@@ -84,7 +89,7 @@ async function registrarUsuario() {
             {
                 uid: credencial.user.uid,
                 nombre: nombreValor,
-                telefono: telefonoValor, // 🔥 AQUÍ SE GUARDA
+                telefono: "+51" + telefonoValor, // 🔥 con prefijo
                 correo: correoValor,
                 fechaRegistro: Date.now(),
                 tipo: "cliente"
