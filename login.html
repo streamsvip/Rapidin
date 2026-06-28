@@ -23,36 +23,33 @@
 
   <div class="login-box">
 
-    <!-- LOGO -->
     <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
 
     <h1>Bienvenido</h1>
 
-    <p>Inicia sesión para continuar.</p>
+    <p>Inicia sesión para continuar</p>
 
-    <!-- FORM LOGIN -->
+    <!-- LOGIN FORM -->
     <form id="loginForm">
 
       <input 
-        type="email" 
+        type="email"
         id="email"
-        placeholder="Correo electrónico" 
+        placeholder="Correo electrónico"
         required
       >
 
-      <!-- PASSWORD CON OJITO PRO -->
-      <div class="password-box">
+      <!-- PASSWORD SIMPLE -->
+      <div class="pass-wrap">
 
         <input 
-          type="password" 
+          type="password"
           id="password"
-          placeholder="Contraseña" 
+          placeholder="Contraseña"
           required
         >
 
-        <button type="button" id="togglePass" class="eye-btn">
-          👁
-        </button>
+        <span id="togglePass" class="eye">👁</span>
 
       </div>
 
@@ -63,22 +60,16 @@
     </form>
 
     <div class="links">
-      <a href="registro.html">
-        Crear cuenta
-      </a>
+      <a href="registro.html">Crear cuenta</a>
     </div>
 
-    <a href="index.html" class="volver">
-      ← Volver al inicio
-    </a>
+    <a href="index.html" class="volver">← Volver al inicio</a>
 
   </div>
 
 </div>
 
-<!-- FIREBASE LOGIN -->
 <script type="module" src="login.js"></script>
 
 </body>
-
 </html>
