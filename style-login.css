@@ -238,4 +238,27 @@ button:hover{
     text-align: left;
     min-height: 20px;
 }
+.error-msg {
+    color: #e53935;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    text-align: left;
+    min-height: 20px;
+}
+
+.forgot-link {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.forgot-link a {
+    color: #e53935;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.forgot-link a:hover {
+    text-decoration: underline;
+}
 }
