@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,11 +9,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style-login.css">
-
 </head>
 
 <body>
@@ -26,12 +23,12 @@
     <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
 
     <h1>Bienvenido</h1>
-
     <p>Inicia sesión para continuar</p>
 
     <!-- LOGIN FORM -->
     <form id="loginForm">
 
+      <!-- EMAIL -->
       <input 
         type="email"
         id="email"
@@ -39,7 +36,7 @@
         required
       >
 
-      <!-- PASSWORD SIMPLE -->
+      <!-- PASSWORD WRAPPER -->
       <div class="pass-wrap">
 
         <input 
@@ -49,7 +46,10 @@
           required
         >
 
-        <span id="togglePass" class="eye">👁</span>
+        <!-- OJO (CLICK REAL) -->
+        <span id="togglePass" class="eye" role="button" tabindex="0">
+          👁
+        </span>
 
       </div>
 
