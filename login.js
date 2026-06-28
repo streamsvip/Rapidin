@@ -11,20 +11,23 @@ const form = document.getElementById("loginForm");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 
-// BOTÓN OJO
+// OJO (seguro)
 const toggle = document.getElementById("togglePass");
 
-// 👁️ mostrar / ocultar contraseña
-toggle.addEventListener("click", () => {
+// 👁 evitar error si no existe
+if (toggle) {
 
-    const isHidden = password.type === "password";
+    toggle.addEventListener("click", () => {
 
-    password.type = isHidden ? "text" : "password";
+        const isHidden = password.type === "password";
 
-    toggle.textContent = isHidden ? "🙈" : "👁";
-});
+        password.type = isHidden ? "text" : "password";
 
-// LOGIN FIREBASE
+        toggle.textContent = isHidden ? "🙈" : "👁";
+    });
+}
+
+// LOGIN
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
