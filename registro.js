@@ -13,93 +13,89 @@ import {
     setDoc
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-const form = document.querySelector("form");
+// Formulario
+const form = document.getElementById("registerForm");
 
+// Inputs
 const nombre = document.getElementById("nombre");
+const correo = document.getElementById("email");
+const clave = document.getElementById("password");
+const confirmar = document.getElementById("confirmPassword");
 
-const correo = document.getElementById("correo");
-
-const clave = document.getElementById("clave");
-
-const confirmar = document.getElementById("confirmar");
-
+// Botón
 const boton = document.getElementById("registroBtn");
 
-form.addEventListener("submit", function(e){
-
+// Evento submit
+form.addEventListener("submit", function (e) {
     e.preventDefault();
-
     registrarUsuario();
-
 });
 
-async function registrarUsuario(){
+async function registrarUsuario() {
 
     const nombreValor = nombre.value.trim();
-
     const correoValor = correo.value.trim();
-
     const claveValor = clave.value.trim();
-
     const confirmarValor = confirmar.value.trim();
 
-    if(nombreValor === ""){
-
+    // 🔥 VALIDACIONES
+    if (nombreValor === "") {
         alert("Ingresa tu nombre.");
         return;
-
     }
 
-    if(claveValor.length < 6){
+    if (correoValor === "") {
+        alert("Ingresa tu correo.");
+        return;
+    }
 
+    if (claveValor.length < 6) {
         alert("La contraseña debe tener al menos 6 caracteres.");
         return;
-
     }
 
-    if(claveValor !== confirmarValor){
-
+    if (claveValor !== confirmarValor) {
         alert("Las contraseñas no coinciden.");
         return;
-
     }
 
-    try{
+    try {
 
+        // 🔒 bloqueo botón
         boton.disabled = true;
-
         boton.innerHTML = "Creando cuenta...";
 
-        const credencial =
-            await createUserWithEmailAndPassword(
-                auth,
-                correoValor,
-                claveValor
-            );
+        // 🔥 crear usuario en Firebase Auth
+        const credencial = await createUserWithEmailAndPassword(
+            auth,
+            correoValor,
+            claveValor
+        );
 
+        // 💾 guardar datos en Firestore
         await setDoc(
-            doc(db,"usuarios",credencial.user.uid),
+            doc(db, "usuarios", credencial.user.uid),
             {
                 uid: credencial.user.uid,
                 nombre: nombreValor,
                 correo: correoValor,
                 fechaRegistro: Date.now(),
-                tipo:"cliente"
+                tipo: "cliente"
             }
         );
 
         alert("Cuenta creada correctamente.");
 
+        // 🔁 redirigir a login
         window.location.href = "login.html";
 
-    }catch(error){
+    } catch (error) {
 
-        alert(error.message);
+        console.error(error);
+
+        alert("Error: " + error.message);
 
         boton.disabled = false;
-
         boton.innerHTML = "Crear cuenta";
-
     }
-
 }
