@@ -1,35 +1,33 @@
-// =====================================
-// RAPIDÍN - PANEL CLIENTE
-// =====================================
+import { auth } from "./firebase.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-// Obtener usuario guardado en el login
-const usuario = localStorage.getItem("usuario");
-
-// Mostrar nombre o correo
 const usuarioLabel = document.getElementById("usuario");
-
-if (usuario) {
-    usuarioLabel.textContent = usuario;
-} else {
-    window.location.href = "login.html";
-}
-
-// Botón cerrar sesión
 const salir = document.getElementById("salir");
 
-salir.addEventListener("click", function () {
+// 🔥 verificar sesión real
+onAuthStateChanged(auth, (user) => {
 
-    if (confirm("¿Deseas cerrar sesión?")) {
-
-        localStorage.removeItem("usuario");
-
+    if (user) {
+        usuarioLabel.textContent = user.email;
+    } else {
         window.location.href = "login.html";
-
     }
 
 });
 
-// Animación de las tarjetas
+// 🔥 cerrar sesión real
+salir.addEventListener("click", async () => {
+
+    if (confirm("¿Deseas cerrar sesión?")) {
+
+        await signOut(auth);
+
+        window.location.href = "login.html";
+    }
+
+});
+
+// animación tarjetas
 const cards = document.querySelectorAll(".card");
 
 cards.forEach((card, index) => {
@@ -38,11 +36,9 @@ cards.forEach((card, index) => {
     card.style.transform = "translateY(25px)";
 
     setTimeout(() => {
-
         card.style.transition = ".4s";
         card.style.opacity = "1";
         card.style.transform = "translateY(0)";
-
     }, index * 150);
 
 });
