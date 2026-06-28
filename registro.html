@@ -15,6 +15,33 @@
 
 <link rel="stylesheet" href="style-login.css">
 
+<!-- 🔥 Estilo teléfono +51 -->
+<style>
+.phone-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.phone-box span {
+  background: #f2f2f2;
+  padding: 12px;
+  font-weight: 600;
+  border-right: 1px solid #ddd;
+}
+
+.phone-box input {
+  border: none;
+  outline: none;
+  padding: 12px;
+  width: 100%;
+}
+</style>
+
 </head>
 
 <body>
@@ -39,12 +66,18 @@
         required
       >
 
-      <input 
-        type="tel"
-        id="telefono"
-        placeholder="Número de celular"
-        required
-      >
+      <!-- 🔥 TELEFONO CON +51 -->
+      <div class="phone-box">
+        <span>+51</span>
+        <input 
+          type="tel"
+          id="telefono"
+          placeholder="Número de celular"
+          maxlength="9"
+          inputmode="numeric"
+          required
+        >
+      </div>
 
       <input 
         type="email"
