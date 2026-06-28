@@ -21,64 +21,66 @@
 
 <div class="container">
 
-<div class="login-box">
+  <div class="login-box">
 
-<img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
+    <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
 
-<h1>Crear Cuenta</h1>
+    <h1>Crear Cuenta</h1>
 
-<p>Regístrate para comenzar a usar Rapidín.</p>
+    <p>Regístrate para comenzar a usar Rapidín.</p>
 
-<form>
+    <!-- FORM REGISTRO -->
+    <form id="registerForm">
 
-<input
-type="text"
-id="nombre"
-placeholder="Nombre completo">
+      <input 
+        type="text"
+        id="nombre"
+        placeholder="Nombre completo"
+        required
+      >
 
-<input
-type="email"
-id="correo"
-placeholder="Correo electrónico">
+      <input 
+        type="email"
+        id="email"
+        placeholder="Correo electrónico"
+        required
+      >
 
-<input
-type="password"
-id="clave"
-placeholder="Contraseña">
+      <input 
+        type="password"
+        id="password"
+        placeholder="Contraseña"
+        required
+      >
 
-<input
-type="password"
-id="confirmar"
-placeholder="Confirmar contraseña">
+      <input 
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirmar contraseña"
+        required
+      >
 
-<button id="registroBtn">
+      <button type="submit" id="registroBtn">
+        Crear cuenta
+      </button>
 
-Crear cuenta
+    </form>
 
-</button>
+    <div class="links">
+      <a href="login.html">
+        Ya tengo una cuenta
+      </a>
+    </div>
 
-</form>
+    <a href="index.html" class="volver">
+      ← Volver al inicio
+    </a>
 
-<div class="links">
-
-<a href="login.html">
-
-Ya tengo una cuenta
-
-</a>
+  </div>
 
 </div>
 
-<a href="index.html" class="volver">
-
-← Volver al inicio
-
-</a>
-
-</div>
-
-</div>
-
+<!-- 🔥 Firebase Module -->
 <script type="module" src="registro.js"></script>
 
 </body>
