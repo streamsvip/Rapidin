@@ -1,7 +1,3 @@
-// =====================================
-// RAPIDÍN - REGISTRO FIREBASE
-// =====================================
-
 import { auth, db } from "./firebase.js";
 
 import {
@@ -26,32 +22,31 @@ const confirmar = document.getElementById("confirmPassword");
 // BOTÓN
 const boton = document.getElementById("registroBtn");
 
-// OJITO
+// OJO (seguro)
 const toggle = document.getElementById("togglePass");
 
-// 🔥 SOLO NUMEROS
+// SOLO NÚMEROS
 telefono.addEventListener("input", () => {
     telefono.value = telefono.value.replace(/\D/g, "");
 });
 
-// 👁 mostrar contraseña
-toggle.addEventListener("click", () => {
+// 👁 evitar crash si no existe
+if (toggle) {
 
-    const isHidden = clave.type === "password";
+    toggle.addEventListener("click", () => {
 
-    clave.type = isHidden ? "text" : "password";
-    confirmar.type = isHidden ? "text" : "password";
+        const isHidden = clave.type === "password";
 
-    toggle.textContent = isHidden ? "🙈" : "👁";
-});
+        clave.type = isHidden ? "text" : "password";
+        confirmar.type = isHidden ? "text" : "password";
+
+        toggle.textContent = isHidden ? "🙈" : "👁";
+    });
+}
 
 // SUBMIT
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    registrarUsuario();
-});
-
-async function registrarUsuario() {
 
     const nombreValor = nombre.value.trim();
     const telefonoValor = telefono.value.trim();
@@ -59,7 +54,6 @@ async function registrarUsuario() {
     const claveValor = clave.value.trim();
     const confirmarValor = confirmar.value.trim();
 
-    // VALIDACIONES
     if (!nombreValor) return alert("Ingresa tu nombre.");
 
     if (!/^[0-9]{9}$/.test(telefonoValor)) {
@@ -99,7 +93,7 @@ async function registrarUsuario() {
             }
         );
 
-        alert("Cuenta creada correctamente.");
+        alert("Cuenta creada correctamente");
 
         window.location.href = "panel-cliente.html";
 
@@ -112,4 +106,4 @@ async function registrarUsuario() {
         boton.disabled = false;
         boton.innerHTML = "Crear cuenta";
     }
-}
+});
