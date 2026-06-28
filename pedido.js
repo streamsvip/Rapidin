@@ -8,14 +8,18 @@ boton.addEventListener("click", publicarPedido);
 
 function publicarPedido() {
 
-    const campos = document.querySelectorAll(
-        "input[type=text], textarea"
-    );
+    const pedido =
+        document.getElementById("pedido").value.trim();
 
-    const pedido = campos[0].value.trim();
-    const descripcion = campos[1].value.trim();
-    const origen = campos[2].value.trim(); // OPCIONAL
-    const destino = campos[3].value.trim();
+    const descripcion =
+        document.getElementById("descripcion").value.trim();
+
+    // OPCIONAL
+    const origen =
+        document.getElementById("origen").value.trim();
+
+    const destino =
+        document.getElementById("destino").value.trim();
 
     if (pedido === "") {
 
@@ -26,7 +30,7 @@ function publicarPedido() {
 
     if (descripcion === "") {
 
-        alert("Agrega una descripción.");
+        alert("Agrega una descripción del pedido.");
         return;
 
     }
@@ -42,12 +46,10 @@ function publicarPedido() {
 
     boton.innerHTML = "📦 Publicando pedido...";
 
+    // Guardar pedido
     localStorage.setItem("pedido", pedido);
     localStorage.setItem("descripcion", descripcion);
-
-    // OPCIONAL
-    localStorage.setItem("origen", origen || "");
-
+    localStorage.setItem("origen", origen); // puede estar vacío
     localStorage.setItem("destino", destino);
 
     setTimeout(() => {
