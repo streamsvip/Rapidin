@@ -1,127 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Crear Cuenta | Rapidín</title>
+<title>Rapidín | Panel</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style-login.css">
-
-<!-- 🔥 Estilo teléfono +51 -->
-<style>
-.phone-box {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  overflow: hidden;
-  background: #fff;
-}
-
-.phone-box span {
-  background: #f2f2f2;
-  padding: 12px;
-  font-weight: 600;
-  border-right: 1px solid #ddd;
-}
-
-.phone-box input {
-  border: none;
-  outline: none;
-  padding: 12px;
-  width: 100%;
-}
-</style>
+<link rel="stylesheet" href="panel.css">
 
 </head>
 
 <body>
 
-<div class="container">
+<header>
 
-  <div class="login-box">
+<img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
 
-    <img src="FBA98F21-22FD-4638-944C-C2F201AE22D4.png" class="logo">
+<div>
 
-    <h1>Crear Cuenta</h1>
+<h2>Hola 👋</h2>
 
-    <p>Regístrate para comenzar a usar Rapidín.</p>
-
-    <!-- FORM REGISTRO -->
-    <form id="registerForm">
-
-      <input 
-        type="text"
-        id="nombre"
-        placeholder="Nombre completo"
-        required
-      >
-
-      <!-- 🔥 TELEFONO CON +51 -->
-      <div class="phone-box">
-        <span>+51</span>
-        <input 
-          type="tel"
-          id="telefono"
-          placeholder="Número de celular"
-          maxlength="9"
-          inputmode="numeric"
-          required
-        >
-      </div>
-
-      <input 
-        type="email"
-        id="email"
-        placeholder="Correo electrónico"
-        required
-      >
-
-      <input 
-        type="password"
-        id="password"
-        placeholder="Contraseña"
-        required
-      >
-
-      <input 
-        type="password"
-        id="confirmPassword"
-        placeholder="Confirmar contraseña"
-        required
-      >
-
-      <button type="submit" id="registroBtn">
-        Crear cuenta
-      </button>
-
-    </form>
-
-    <div class="links">
-      <a href="login.html">
-        Ya tengo una cuenta
-      </a>
-    </div>
-
-    <a href="index.html" class="volver">
-      ← Volver al inicio
-    </a>
-
-  </div>
+<p id="usuario">Cargando...</p>
 
 </div>
 
-<script type="module" src="registro.js"></script>
+</header>
+
+<section class="hero">
+
+<h1>¿Qué necesitas hoy?</h1>
+
+<p>Pide cualquier cosa en Camaná y recibe ofertas de repartidores en minutos.</p>
+
+</section>
+
+<section class="acciones">
+
+<a href="nuevo-pedido.html" class="card">
+
+<div class="icono">📦</div>
+
+<h3>Nuevo pedido</h3>
+
+<p>Solicita cualquier compra, envío o retiro.</p>
+
+</a>
+
+<a href="#" class="card">
+
+<div class="icono">🛵</div>
+
+<h3>Mis pedidos</h3>
+
+<p>Consulta el estado de tus pedidos.</p>
+
+</a>
+
+<a href="#" class="card">
+
+<div class="icono">❤️</div>
+
+<h3>Favoritos</h3>
+
+<p>Direcciones y lugares frecuentes.</p>
+
+</a>
+
+<a href="#" class="card">
+
+<div class="icono">👤</div>
+
+<h3>Mi perfil</h3>
+
+<p>Edita tus datos personales.</p>
+
+</a>
+
+</section>
+
+<button id="salir">
+Cerrar sesión
+</button>
+
+<!-- 🔥 Firebase Module -->
+<script type="module" src="panel.js"></script>
 
 </body>
-
 </html>
